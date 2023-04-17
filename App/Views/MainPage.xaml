@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.MainPage"
+             xmlns:model="clr-namespace:Addon;assembly=Addon"
+             xmlns:local="clr-namespace:App.ViewModels"
+             x:DataType="local:MainPageViewModel"
+             Title="MainPage">
+    <StackLayout>
+        <ListView x:Name="functionsList" ItemsSource="{Binding Addons, Mode=TwoWay}" Margin="5,5,5,0" >
+            <ListView.ItemTemplate >
+                <DataTemplate x:DataType="model:IAddon">
+                    <ViewCell >
+                        <StackLayout Padding="0,5,0,0" >
+                            <Button  Clicked="UseAddonButtonClicked" BindingContext="{Binding}"  Text="{Binding Name}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
