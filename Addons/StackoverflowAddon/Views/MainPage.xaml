@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:StackoverflowAddon.ViewModels"
+             xmlns:model="clr-namespace:StackoverflowAddon.Models"
+             x:Class="StackoverflowAddon.Views.MainPage"
+             x:DataType="local:StackoverflowViewModel"
+             Title="MainPage"
+             >
+    
+    <StackLayout>
+        <Entry x:Name="numbersOf" Placeholder="0"/>
+        <Button x:Name="ShowPopularity" Clicked="ShowMostPopularTopicsButtonClicked" Text="Show"/>
+        <ListView x:Name="listOfTopics" ItemsSource="{Binding Topics, Mode=TwoWay}" Margin="5,5,5,0" IsVisible="false">
+            <ListView.ItemTemplate >
+                <DataTemplate x:DataType="model:Topic">
+                    <ViewCell >
+                        <StackLayout Padding="0,5,0,0" Orientation="Horizontal" >
+                            <Label Text="{Binding Name, StringFormat='{0}:'}"/>
+                            <Label Text="{Binding Count, StringFormat=' was used {0} times.'}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label x:Name="error" IsVisible="false"/>
+    </StackLayout>
+</ContentPage>
